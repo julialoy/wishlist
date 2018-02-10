@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+     <link rel="stylesheet" href="../static/css/normalize.css">
+     <link rel="stylesheet" href="../static/css/wishlist.css">
+</head>
+<body>
+    <div class="wrap">
+        <header class="main-header">
+            <h1 class="title"><a href="{{ url_for('index') }}">Wishlist!</a></h1>
+            {% with messages=get_flashed_messages() %}
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="message">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+            <div class="menu">
+                {% from 'macros.html' import render_field %}
+                <form method="POST" action="{{ url_for('search') }}" method="post" class="search-box">
+                    {{ g.search_form.csrf_token }}
+                    {{ render_field(g.search_form.select) }}
+                    {{ render_field(g.search_form.search) }}
+                    <input type="submit" value="Search">
+                </form>
+
+                {% if current_user.is_authenticated %}
+                <ul class="main-nav">
+                    <li><a href="{{ url_for('wishlist_create') }}">Create a List!</a></li>
+                    <li><a href="{{ url_for('logout') }}">Log Out!</a></li>
+                    <li><a href="{{ url_for('profile', user_id=current_user.id) }}">Profile!</a></li>
+                </ul>
+                {% else %}
+                <ul class="main-nav">
+                    <li><a href="{{ url_for('login') }}">Sign in!</a></li>
+                    <li><a href="{{ url_for('register') }}">Register!</a></li>
+                </ul>
+                {% endif %}
+            </div>
+        </header>
+
+        <div class="main-content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>I'm a footer.</p>
+    </footer>
+
+</body>
+</html>

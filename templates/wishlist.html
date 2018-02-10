@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% from 'macros.html' import render_field %}
+
+{% block content %}
+<h2>Create List</h2>
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <div class="u-full-width">
+        {{ render_field(form.title) }}
+    </div>
+    <div class="u-full-width">
+        <input type="submit" class="button-primary" value="Create List">
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Search Results</h2>
+<ul>
+    {% for result in results %}
+        <li><a href="{{ url_for('profile', user_id=result.id) }}">{{ result.email }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

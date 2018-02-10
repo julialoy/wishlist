@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% from 'macros.html' import render_field %}
+{% block content %}
+<h2>{{ selected_wishlist.title }}</h2>
+    {% if items.count() %}
+    <div>
+        <table class="list-content">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Link</th>
+                    <th>Date Added</th>
+                    <th>Edit?</th>
+                    <th>Remove?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td><a href="{{ item.link }}">{{ item.link }}</a></td>
+                    <td>{{ item.date_added }}</td>
+                    <td>
+                        <a href="{{ url_for('edit_item', selected_item_id=item.id) }}">
+                            Edit
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('delete_item', selected_item_id=item.id, selected_wishlist_id=selected_wishlist.id) }}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <p>This list has no items yet!</p>
+    {% endif %}
+<div class="button-links">
+    <a href="{{ url_for('add_item', selected_list_id=selected_wishlist.id) }}" class="fake-button">
+        Add an item
+    </a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% from 'macros.html' import render_field %}
+{% block content %}
+<h2>{{ selected_user.email }}'s Profile!</h2>
+
+<ul>
+    <li>
+        Email address:
+        <a href="mailto:{{ selected_user.email }}">
+            {{ selected_user.email }}
+        </a>
+    </li>
+    <li>
+        Number of lists: {{ wishlists.count() }}
+    </li>
+</ul>
+
+{% endblock %}

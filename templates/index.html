@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% from 'macros.html' import render_field %}
+
+{% block content %}
+
+{% if current_user.is_authenticated %}
+<h2>{{ current_user.email }}'s Lists</h2>
+
+    {% if wishlists.count() %}
+    <form method="POST" action="{{ url_for('delete_list') }}">
+        <table class="list-content">
+            <tbody>
+                {% for wishlist in wishlists %}
+                <tr>
+                    <td><a href="{{ url_for('wishlist_view', selected_wishlist_id=wishlist.id) }}">{{ wishlist.title }}</a></td>
+                    <td>
+                        <input type="checkbox" name="{{ wishlist.id }}">
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <input type="submit" value="Delete">
+    </form>
+    {% else %}
+        <p>You do not have any lists yet!</p>
+    {% endif %}
+{% else %}
+<h2>Lists</h2>
+<p>There are no lists yet! Sign in or register to create a list!</p>
+{% endif %}
+{% endblock %}
