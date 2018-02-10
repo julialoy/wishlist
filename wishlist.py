@@ -61,7 +61,6 @@ def search():
         return redirect(url_for('index'))
     return redirect(url_for('search_results', query=g.search_form.search.data))
 
-
 @app.route("/searchresults/<query>", methods=["GET", "POST"])
 def search_results(query):
     results = []
@@ -189,7 +188,7 @@ def add_item(selected_list_id):
 @login_required
 def edit_item(selected_item_id):
     form = forms.EditItem()
-
+    selected_item = models.Item.get(models.Item.id==selected_item_id)
     if form.validate_on_submit():
         q = models.Item.update(
             name=form.name.data.strip(),
@@ -198,7 +197,7 @@ def edit_item(selected_item_id):
         q.execute()
         flash("Item updated!", "success")
         return redirect(url_for('index'))
-    return render_template('edititem.html', form=form)
+    return render_template('edititem.html', form=form, selected_item=selected_item)
 
 
 @app.route("/deleteitem/<int:selected_item_id>/<int:selected_wishlist_id>",
@@ -221,14 +220,17 @@ def delete_item(selected_item_id, selected_wishlist_id):
 @app.route("/deletelist", methods=["POST"])
 @login_required
 def delete_list():
-    print([*request.form.keys()])
-    #selected_list = models.Wishlist.get(models.Wishlist.id == selected_list_id)
-
+    selections =[*request.form.keys()]
+    for selection in selections:
+        selected_list = models.Wishlist.get(models.Wishlist.id==int(selection))
+        if selected_list.user_id==current_user.id:
+            selected_list.delete_instance(recursive=True)
+            flash("{} has been deleted.".format(selected_list.title))
+        else:
+            flash("You don't have permission to delete {}".format(selected_list.title))
     return redirect(url_for('index'))
 
 # Add functionality for:
-# Editing items
-# Deleting items
 # Editing list (change name and delete)
 # Changing email address
 # Deleting account (user)

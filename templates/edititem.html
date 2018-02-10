@@ -3,16 +3,24 @@
 {% from 'macros.html' import render_field %}
 
 {% block content %}
-<h2>Edit!</h2>
+<h2 xmlns="http://www.w3.org/1999/html">Edit!</h2>
 <form method="POST" action="">
     {{ form.hidden_tag() }}
     <div class="u-full-width">
-    </div>
-    <div class="u-full-width">
-        {{ render_field(form.name) }}
-    </div>
-    <div class="u-full-width">
-        {{ render_field(form.link) }}
+    <table class="list-content">
+        <tr>
+            <th>Item Name</th>
+            <th>New Name</th>
+            <th>Item Link</th>
+            <th>New Link</th>
+        </tr>
+        <tr>
+            <td>{{ selected_item.name }}</td>
+            <td>{{ render_field(form.name) }}</td>
+            <td>{{ selected_item.link }}</td>
+            <td>{{ render_field(form.link) }}</td>
+        </tr>
+    </table>
     </div>
     <div class="u-full-width">
         <input type="submit" class="button-primary" value="Edit item!">

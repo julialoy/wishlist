@@ -11,6 +11,10 @@
     <form method="POST" action="{{ url_for('delete_list') }}">
         <table class="list-content">
             <tbody>
+                <tr>
+                    <th>List Title</th>
+                    <th>Delete?</th>
+                </tr>
                 {% for wishlist in wishlists %}
                 <tr>
                     <td><a href="{{ url_for('wishlist_view', selected_wishlist_id=wishlist.id) }}">{{ wishlist.title }}</a></td>
