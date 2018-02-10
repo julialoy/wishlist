@@ -71,11 +71,14 @@ def search_results(query):
         results = qry
     else:
         qry = models.User.select().where(models.User.email.contains(user_query))
-        results = qry
+        if qry.exists():
+            results = qry
+        else:
+            results =[]
 
     if not results:
         flash("No results found!", "failure")
-        return redirect('index.html')
+        return redirect(url_for('index'))
 
     return render_template('searchresults.html', results=results)
 
@@ -189,7 +192,9 @@ def add_item(selected_list_id):
 def edit_item(selected_item_id):
     form = forms.EditItem()
     selected_item = models.Item.get(models.Item.id==selected_item_id)
-    if form.validate_on_submit():
+    selected_list = models.Wishlist.get(models.Wishlist.id==selected_item.wishlist_id)
+
+    if form.validate_on_submit() and selected_list.user_id==current_user.id:
         q = models.Item.update(
             name=form.name.data.strip(),
             link=form.link.data.strip()
@@ -197,8 +202,30 @@ def edit_item(selected_item_id):
         q.execute()
         flash("Item updated!", "success")
         return redirect(url_for('index'))
+    else:
+        flash("You do not have permission to edit this item.", "failure")
+        redirect(url_for('index'))
+
     return render_template('edititem.html', form=form, selected_item=selected_item)
 
+
+@app.route("/editlistname/<int:selected_list_id>", methods=["GET", "POST"])
+@login_required
+def edit_list_name(selected_list_id):
+    form = forms.EditListName()
+    selected_list = models.Wishlist.get(models.Wishlist.id==selected_list_id)
+    if form.validate_on_submit() and selected_list.user_id==current_user.id:
+        q = models.Wishlist.update(
+            title=form.title.data.strip()
+        ).where(models.Wishlist.id==selected_list_id)
+        q.execute()
+        flash("List name updated!", "success")
+        return redirect(url_for('index'))
+    else:
+        flash("You do not have permission to edit this item.", "failure")
+        redirect(url_for('index'))
+
+    return render_template('editlistname.html', form=form, selected_list=selected_list)
 
 @app.route("/deleteitem/<int:selected_item_id>/<int:selected_wishlist_id>",
            methods=("GET", "DELETE"))
@@ -231,7 +258,6 @@ def delete_list():
     return redirect(url_for('index'))
 
 # Add functionality for:
-# Editing list (change name and delete)
 # Changing email address
 # Deleting account (user)
 if __name__ == '__main__':

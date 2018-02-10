@@ -69,3 +69,7 @@ class SearchForm(FlaskForm):
 class EditItem(FlaskForm):
     name = StringField(validators=[DataRequired()])
     link = StringField(validators=[URL(require_tld=True)])
+
+
+class EditListName(FlaskForm):
+    title = StringField(validators=[DataRequired()])

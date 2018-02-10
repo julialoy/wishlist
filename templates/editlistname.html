@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% from 'macros.html' import render_field %}
+
+{% block content %}
+<h2 xmlns="http://www.w3.org/1999/html">Edit List Name!</h2>
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <div class="u-full-width">
+    <table class="list-content">
+        <tr>
+            <th>List Name</th>
+            <th>New Name</th>
+        </tr>
+        <tr>
+            <td>{{ selected_list.title }}</td>
+            <td>{{ render_field(form.title) }}</td>
+        </tr>
+    </table>
+    </div>
+    <div class="u-full-width">
+        <input type="submit" class="button-primary" value="Edit list name!">
+    </div>
+</form>
+{% endblock %}

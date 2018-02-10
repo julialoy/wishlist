@@ -13,11 +13,13 @@
             <tbody>
                 <tr>
                     <th>List Title</th>
+                    <th>Edit List Name</th>
                     <th>Delete?</th>
                 </tr>
                 {% for wishlist in wishlists %}
                 <tr>
                     <td><a href="{{ url_for('wishlist_view', selected_wishlist_id=wishlist.id) }}">{{ wishlist.title }}</a></td>
+                    <td><a href="{{ url_for('edit_list_name', selected_list_id=wishlist.id) }}">Edit</a></td>
                     <td>
                         <input type="checkbox" name="{{ wishlist.id }}">
                     </td>
