@@ -55,7 +55,13 @@ class Item(BaseModel):
     date_added = DateField(default=date.today().isoformat())
 
 
+class UserInfo(BaseModel):
+    user = ForeignKeyField(User)
+    bio = CharField(max_length=500)
+    pic = CharField()
+
+
 def initialize():
     DATABASE.connect()
-    DATABASE.create_tables([User, Wishlist, Item], safe=True)
+    DATABASE.create_tables([User, Wishlist, Item, UserInfo], safe=True)
     DATABASE.close()

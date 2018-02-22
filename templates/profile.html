@@ -2,6 +2,15 @@
 {% from 'macros.html' import render_field %}
 {% block content %}
 <h2>{{ selected_user.email }}'s Profile!</h2>
+{% if selected_user_info.pic=="" %}
+    <p>Add a user profile!</p>
+    <form action="{{ url_for('uploader') }}" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+{% else %}
+    <img src="{{ url_for('uploaded_file', filename=selected_user_info.pic) }}">
+{% endif %}
 
 <ul>
     <li>
@@ -14,5 +23,7 @@
         Number of lists: {{ wishlists.count() }}
     </li>
 </ul>
+
+
 
 {% endblock %}

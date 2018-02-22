@@ -65,7 +65,6 @@ class SearchForm(FlaskForm):
     search = StringField('search', validators=[DataRequired()])
 
 
-
 class EditItem(FlaskForm):
     name = StringField(validators=[DataRequired()])
     link = StringField(validators=[URL(require_tld=True)])
