@@ -161,6 +161,7 @@ a .button {
 }
 
 .fake-button a:visited:hover:active {
+  text-decoration: none;
   color: black;
 }
 
@@ -226,4 +227,28 @@ td:last-child {
   .main-nav li {
     display: inline;
   }
+}
+
+/* =================================
+  Profile Page
+==================================== */
+.profile-pic-info {
+  display: inline;
+  font-weight: bold;
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.profile-content {
+  display: inline;
+  font-weight: bold;
+}
+
+.profile-pic {
+  display: inline;
+  border-radius: 50%;
+  max-width: 100px;
+  max-height: 100px;
+  width: auto;
+  height: auto;
 }
