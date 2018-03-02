@@ -1,254 +1,46 @@
 /* =================================
-  Unused styles
-==================================== */
-
-/* For a background image that fills the entire page, doesn't repeat. */
-
-/* html {
-background: linear-gradient(to right, red, white, red) no-repeat center center fixed;
-background: url('../images/tree.jpg') no-repeat center center fixed;
--webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
-}*/
-
-/* =================================
   Base Element Styles
 ==================================== */
+/* Styles from Bootstrap */
 
-/* Avoids having padding or border width values expanding past 70% on mobile
- devices or 1000px on larger screens.
-
- Asterisk universal selector used so all
- elements inherit this property and won't break layout.
-
- Border-box forces padding and borders into the width and height of the elements.
- */
-* {
-  box-sizing: border-box;
+html {
+  position: relative;
+  min-height: 100%;
 }
 
 body {
-  line-height: 1.6;
+  /* Margin bottom by footer height */
+  padding-top: 70px;
+  margin-bottom: 60px;
 }
 
-h1 {
-  margin-top: 0;
-  color: orange;
-  font-size: 46px;
+
+.starter-template {
+  padding: 3rem 1.5rem;
   text-align: center;
 }
 
-h1 a:visited:hover:active {
-  color: orange;
+ul,
+li {
+  list-style-type: none;
 }
 
-a {
-  color: orange;
-  text-decoration: none;
-}
-
-/* =================================
-  Base Layout Styles
-==================================== */
-
-/* ---- Navigation ---- */
-
-.title {
-  margin: 0;
-}
-
-.messages {
-  margin: 1em;
-  padding: 0.5em 1em;
-  border-radius: 25px;
-  background: lightblue;
-  font-weight: bold;
-}
-
-
-.menu {
-  margin: 1em;
-  padding: 1em;
-  border-radius: 25px;
-  background: hotpink;
-}
-
-.search-box,
-.main-nav li {
-  font-weight: bold;
-  font-size: 18px;
-  color: white;
-}
-
-/*
-.main-nav li {
-  background: lavender;
-  width: 75%;
-  float: left;
-  display: inline-flex;
-  align-content: left;
-  font-weight: bold;
-  font-size: 18px;
-  color: white;
-} */
-
-/*
-.main-nav {
-  display: inline;
-  margin-left: 7%;
-  font-weight: bold;
-  font-size: 18px;
-  align-content: right;
-}
-*/
-.main-nav a {
-  padding: 15px;
-  color: white;
-}
-
-/* ---- Layout Containers ---- */
-
-/* Creates a header that spans the entire width of page. */
-.main-header {
-  padding-top: 1.5em;
-  padding-bottom: 1.5em;
-  background: black;
-  margin-bottom: 30px;
-}
-
-/* Padding separates the container from the left and right margins of the page.
-Added here so all screens and devices share this property. */
-.main-content {
-  padding-left: 1em;
-  padding-right: 1em;
-}
-
-/* Creates a footer that spans the entire width of page. */
-.main-footer {
-  text-align: center;
-  padding: 2em 0;
-  color: orange;
-  font-weight: bold;
-  background: lightgrey;
-}
-
-/* ---- Page Elements ---- */
-
-h2 {
-  color: orange;
-  margin: 0em 0em 0em 3em;
-}
-
-a .button {
-  -webkit-appearance: button;
-  -moz-appearance: button;
-  appearance: button;
-  text-decoration: none;
-  color: initial;
-}
-
-.fake-button {
-  margin: 1em;
-  padding: 0.5em 1em;
-  border-radius: 25px;
-  display: inline-flex;
-  background: orange;
-  font-weight: bold;
-  text-decoration: none;
-  color: black;
-}
-
-.fake-button a:visited:hover:active {
-  text-decoration: none;
-  color: black;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  margin: 0.5em 3em 0em 3em;
-}
-
-table a {
-  font-weight: bold;
-  color: green;
-  text-decoration: none;
-}
-
-td,
-th {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid black;
-}
-
-th:first-child,
-td:first-child {
-  padding-left: 0;
-}
-
-th:last-child,
-td:last-child {
-  padding-right: 0;
-}
-
-.list-content {
+.footer {
+  position: absolute;
+  bottom: 0;
   width: 100%;
-  box-sizing: border-box;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
 }
 
-
-/* =================================
-  Base Element Styles
-==================================== */
-
-@media (min-width: 769px) {
-/* Force footer to stay at bottom of viewport.
-   vh = viewport height; a viewport-relative unit, allows sizing based on height of browser viewport.
-   1vh = 1% of viewport height.
-*/
-  .wrap {
-    min-height: calc(100vh - 121px);    /* Calc function used to subtract footer height from 100% of viewport height to avoid vertical scroll bar (mostly). */
-  }
-
-/* Leaves white space around main content so layout looks more open.
-   In media query so on mobile devices doesn't leave too much space.*/
-  .main-content {
-    width: 70%;
-    max-width: 1000px;  /* Keeps this container from getting too wide on larger screens */
-    margin: 0 auto;
-  }
-
-/* Puts items in navigation menu all on same line for non-mobile devices. */
-  .search-box,
-  .main-nav,
-  .main-nav li {
-    display: inline;
-  }
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
-/* =================================
-  Profile Page
-==================================== */
-.profile-pic-info {
-  display: inline;
-  font-weight: bold;
-  max-width: 100px;
-  max-height: 100px;
+code {
+  font-size: 80%;
 }
 
-.profile-content {
-  display: inline;
-  font-weight: bold;
-}
-
-.profile-pic {
-  display: inline;
-  border-radius: 50%;
-  max-width: 100px;
-  max-height: 100px;
-  width: auto;
-  height: auto;
-}

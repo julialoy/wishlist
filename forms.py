@@ -61,8 +61,8 @@ class ItemForm(FlaskForm):
 
 class SearchForm(FlaskForm):
     choices = [('User', 'User')]
-    select = SelectField("Search for: ", choices=choices)
-    search = StringField('search', validators=[DataRequired()])
+    select = SelectField(choices=choices)
+    search = StringField(validators=[DataRequired()])
 
 
 class EditItem(FlaskForm):
