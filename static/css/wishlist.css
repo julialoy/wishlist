@@ -29,9 +29,6 @@ background-size: cover;
   box-sizing: border-box;
 }
 
-body {
-  line-height: 1.6;
-}
 
 h1 {
   margin-top: 0;
@@ -208,7 +205,7 @@ td:last-child {
    1vh = 1% of viewport height.
 */
   .wrap {
-    min-height: calc(100vh - 121px);    /* Calc function used to subtract footer height from 100% of viewport height to avoid vertical scroll bar (mostly). */
+    min-height: calc(100vh - 114px);    /* Calc function used to subtract footer height from 100% of viewport height to avoid vertical scroll bar (mostly). */
   }
 
 /* Leaves white space around main content so layout looks more open.
@@ -221,9 +218,13 @@ td:last-child {
 
 /* Puts items in navigation menu all on same line for non-mobile devices. */
   .search-box,
-
   .main-nav li {
     display: inline-block;
+  }
+
+/* Creates more separation between items in navagation bar */
+  .main-nav li {
+    margin-right: 12px;
   }
 }
 
@@ -250,3 +251,4 @@ td:last-child {
   width: auto;
   height: auto;
 }
+
