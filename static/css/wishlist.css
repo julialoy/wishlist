@@ -204,9 +204,21 @@ td:last-child {
    vh = viewport height; a viewport-relative unit, allows sizing based on height of browser viewport.
    1vh = 1% of viewport height.
 */
-  .wrap {
-    min-height: calc(100vh - 114px);    /* Calc function used to subtract footer height from 100% of viewport height to avoid vertical scroll bar (mostly). */
+
+  body {
+    padding: 285.85px 0 0 0;
   }
+
+  .main-header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+  }
+
+  /*.wrap {
+    min-height: calc(100vh - 113.75px);    /* Calc function used to subtract footer height from 100% of viewport height to avoid vertical scroll bar (mostly). */
+ /* }
 
 /* Leaves white space around main content so layout looks more open.
    In media query so on mobile devices doesn't leave too much space.*/
@@ -214,6 +226,10 @@ td:last-child {
     width: 70%;
     max-width: 1000px;  /* Keeps this container from getting too wide on larger screens */
     margin: 0 auto;
+  }
+
+  .search-box {
+    width: 50%;
   }
 
 /* Puts items in navigation menu all on same line for non-mobile devices. */
@@ -225,6 +241,19 @@ td:last-child {
 /* Creates more separation between items in navagation bar */
   .main-nav li {
     margin-right: 12px;
+  }
+
+  .main-footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+  }
+
+/*Keep container from collapsing if children float */
+  .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
   }
 }
 

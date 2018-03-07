@@ -19,7 +19,7 @@
             </div>
             {% endif %}
             {% endwith %}
-            <div class="menu">
+            <div class="menu clearfix">
                 {% from 'macros.html' import render_field %}
                 <form method="POST" action="{{ url_for('search') }}" method="post" class="search-box">
                     {{ g.search_form.csrf_token }}
