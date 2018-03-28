@@ -29,12 +29,19 @@ background-size: cover;
   box-sizing: border-box;
 }
 
+body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: column;
+  align-self: stretch;
+  min-height: 100vh;
+}
 
 h1 {
   margin-top: 0;
   color: orange;
   font-size: 46px;
-  text-align: center;
 }
 
 h1 a:visited:hover:active {
@@ -57,6 +64,9 @@ a {
 }
 
 .messages {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: stretch;
   margin: 1em;
   padding: 0.5em 1em;
   border-radius: 25px;
@@ -64,33 +74,29 @@ a {
   font-weight: bold;
 }
 
-
-.menu {
-  margin: 1em;
-  padding: 1em;
-  border-radius: 25px;
-  background: hotpink;
-}
-
-
 .search-box,
 .main-nav li {
-  background: lavender;
-  width: 75%;
-  float: left;
-  display: inline-flex;
-  align-content: left;
   font-weight: bold;
   font-size: 18px;
   color: white;
 }
 
+.search-box {
+  display: flex;
+  flex-grow: 2;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-right: auto;
+}
+
 .main-nav {
-  display: inline-flex;
-  margin-left: 7%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: space-around;
   font-weight: bold;
   font-size: 18px;
-  align-content: right;
 }
 
 .main-nav a {
@@ -102,27 +108,47 @@ a {
 
 /* Creates a header that spans the entire width of page. */
 .main-header {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
   padding-top: 1.5em;
   padding-bottom: 1.5em;
   background: black;
   margin-bottom: 30px;
 }
 
-.search-box,
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/*.search-box,
 .main-nav {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
   padding: 10px 15px;
 }
 
 /* Padding separates the container from the left and right margins of the page.
 Added here so all screens and devices share this property. */
 .main-content {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
   padding-left: 1em;
   padding-right: 1em;
 }
 
 /* Creates a footer that spans the entire width of page. */
 .main-footer {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
   padding: 2em 0;
   color: orange;
   font-weight: bold;
@@ -198,6 +224,43 @@ td:last-child {
 /* =================================
   Base Element Styles
 ==================================== */
+@media (max-width: 768px) {
+  .body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-height: 100vh;
+  }
+
+  .wrap {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    background: hotpink;
+  }
+
+  .search-box {
+    flex-direction: column;
+    margin: 0.2em;
+  }
+
+  .main-nav {
+    flex-direction: column;
+    margin: 0.2em;
+    background: hotpink;
+  }
+
+  .main-footer {
+    display: flex;
+    align-content: flex-end;
+    align-self: stretch;
+  }
+}
 
 @media (min-width: 769px) {
 /* Force footer to stay at bottom of viewport.
@@ -207,6 +270,10 @@ td:last-child {
 
   body {
     padding: 285.85px 0 0 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
   }
 
   .main-header {
@@ -216,6 +283,17 @@ td:last-child {
     z-index: 100;
   }
 
+  .menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end | space-around;
+    align-self: stretch;
+    align-items: center;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 25px;
+    background: hotpink;
+  }
   /*.wrap {
     min-height: calc(100vh - 113.75px);    /* Calc function used to subtract footer height from 100% of viewport height to avoid vertical scroll bar (mostly). */
  /* }
@@ -228,14 +306,16 @@ td:last-child {
     margin: 0 auto;
   }
 
-  .search-box {
-    width: 50%;
-  }
-
 /* Puts items in navigation menu all on same line for non-mobile devices. */
   .search-box,
   .main-nav li {
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .search-box {
+    justify-content: flex-start;
+    width: 50%
   }
 
 /* Creates more separation between items in navagation bar */
@@ -244,9 +324,10 @@ td:last-child {
   }
 
   .main-footer {
-    position: fixed;
+    align-self: stretch;
+    /*position: fixed;
     width: 100%;
-    bottom: 0;
+    bottom: 0;*/
   }
 
 /*Keep container from collapsing if children float */

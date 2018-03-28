@@ -251,7 +251,7 @@ def edit_item(selected_item_id):
     selected_item = models.Item.get(models.Item.id==selected_item_id)
     selected_list = models.Wishlist.get(models.Wishlist.id==selected_item.wishlist_id)
 
-    if form.validate_on_submit() and selected_list.user_id==current_user.id:
+    if form.validate_on_submit() and current_user.id==selected_list.user_id:
         q = models.Item.update(
             name=form.name.data.strip(),
             link=form.link.data.strip()
@@ -259,7 +259,7 @@ def edit_item(selected_item_id):
         q.execute()
         flash("Item updated!", "success")
         return redirect(url_for('index'))
-    else:
+    elif not current_user.id==selected_list.user_id:
         flash("You do not have permission to edit this item.", "failure")
         redirect(url_for('index'))
 
@@ -278,7 +278,7 @@ def edit_list_name(selected_list_id):
         q.execute()
         flash("List name updated!", "success")
         return redirect(url_for('index'))
-    else:
+    elif not selected_list.user_id==current_user.id:
         flash("You do not have permission to edit this item.", "failure")
         redirect(url_for('index'))
 
@@ -297,7 +297,7 @@ def delete_item(selected_item_id, selected_wishlist_id):
             flash("Item has been deleted.", "success")
         except:
             flash("Unable to delete item.", "failure")
-    else:
+    elif not selected_list.user_id==current_user.id:
         flash("You are not allowed to delete that item.", "failure")
     return redirect(url_for('wishlist_view', selected_wishlist_id=selected_list.id))
 
