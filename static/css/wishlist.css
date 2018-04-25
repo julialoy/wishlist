@@ -153,6 +153,8 @@ Added here so all screens and devices share this property. */
   color: orange;
   font-weight: bold;
   background: lightgrey;
+  clear: both;
+  height: auto;
 }
 
 /* ---- Page Elements ---- */
